@@ -16,4 +16,11 @@ pipeline {
             }
         }
     }
+    options {
+        ansiColor('xterm')
+        timestamps()
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+    }
 }
