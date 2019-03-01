@@ -3,10 +3,5 @@
 export PATH="/usr/local/envs/birdy/bin:$PATH"
 
 python -m ipykernel install --name birdy --user
-py.test --nbval hummingbird.ipynb --sanitize-with output-sanitize.cfg
 
-# failing
-py.test --nbval subsetting.ipynb --sanitize-with output-sanitize.cfg
-
-# failing
-py.test --nbval flyingpigeon.ipynb --sanitize-with output-sanitize.cfg
+py.test --nbval *.ipynb --sanitize-with output-sanitize.cfg
