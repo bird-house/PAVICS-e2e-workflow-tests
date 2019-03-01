@@ -7,3 +7,6 @@ py.test --nbval hummingbird-myPavics-WORKING.ipynb --sanitize-with output-saniti
 
 # failing
 py.test --nbval subsetting.ipynb --sanitize-with output-sanitize.cfg
+
+# failing
+py.test --nbval flyingpigeon.ipynb --sanitize-with output-sanitize.cfg
