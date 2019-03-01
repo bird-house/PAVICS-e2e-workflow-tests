@@ -9,7 +9,7 @@ RUN conda env create -f /environment-birdy.yml
 
 # install using same channel preferences as birdy original env to not downgrade
 # anything accidentally
-RUN conda install -n birdy -c birdhouse -c conda-forge -c default pytest nbval
+RUN conda install -n birdy -c birdhouse -c conda-forge -c default matplotlib xarray numpy birdhouse-birdy pytest nbval
 
 # needed for our specific jenkins
 RUN groupadd --gid 1000 jenkins \
