@@ -14,3 +14,10 @@ RUN conda install -n birdy -c birdhouse -c conda-forge -c default matplotlib xar
 # needed for our specific jenkins
 RUN groupadd --gid 1000 jenkins \
     && useradd --uid 1000 --gid jenkins --create-home jenkins
+
+# to start a notebook locally to edit .ipynb files
+RUN conda install -n birdy -c birdhouse -c conda-forge -c default jupyter
+
+ENV PATH="/usr/local/envs/birdy/bin:$PATH"
+
+RUN python -m ipykernel install --name birdy

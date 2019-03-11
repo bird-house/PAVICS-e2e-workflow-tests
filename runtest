@@ -1,7 +1,3 @@
 #!/bin/sh
 
-export PATH="/usr/local/envs/birdy/bin:$PATH"
-
-python -m ipykernel install --name birdy --user
-
 py.test --nbval *.ipynb --sanitize-with output-sanitize.cfg
