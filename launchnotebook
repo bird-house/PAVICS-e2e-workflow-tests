@@ -1,3 +1,9 @@
 #!/bin/sh -x
 
-docker run -u 1000:1000 --rm --name birdy-notebook -p 8890:8888 -v `pwd`:`pwd` birdy jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
+PORT="$1"
+
+if [ -z "$PORT" ]; then
+    PORT=8890
+fi
+
+docker run -u 1000:1000 --rm --name birdy-notebook -p $PORT:$PORT -v `pwd`:`pwd` birdy jupyter notebook --ip=0.0.0.0 --port=$PORT --no-browser
