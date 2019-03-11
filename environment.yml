@@ -1,0 +1,17 @@
+# conda env create -f environment.yml
+name: birdy
+channels:
+  - birdhouse
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib
+  - xarray
+  - numpy
+  - birdhouse-birdy
+  - netcdf4
+  # tests
+  - pytest
+  - nbval
+  # to edit .ipynb
+  - jupyter
