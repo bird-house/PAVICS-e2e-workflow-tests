@@ -11,19 +11,12 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
-                    sh("./runtest")
-                }
-            }
-        }
-        stage('Run tests from other repos') {
-            steps {
-                script {
                     sh("./downloadrepos")
-                    sh("./runtest 'pavics-sdi-master/docs/source/notebooks/*.ipynb'")
+                    sh("./runtest 'notebooks/*.ipynb pavics-sdi-master/docs/source/notebooks/*.ipynb'")
                 }
             }
         }
-    }
+   }
     options {
         ansiColor('xterm')
         timestamps()
