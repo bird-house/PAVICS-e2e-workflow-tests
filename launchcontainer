@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-IMAGE="pavics/workflow-tests:190311"
+IMAGE="pavics/workflow-tests:190312"
 
 # 1000 is the jenkins user inside the image
 docker run -u 1000:1000 -it --rm --name birdy -v `pwd`:`pwd` -w `pwd` $IMAGE bash
