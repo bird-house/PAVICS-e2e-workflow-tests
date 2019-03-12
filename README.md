@@ -60,3 +60,17 @@ then navigate to
 `http://localhost:8890/tree/home/lvu/repos/PAVICS-e2e-workflow-tests/notebooks`
 if `/home/lvu/repos/PAVICS-e2e-workflow-tests` is where you have this repo
 checked out on your local machine.
+
+
+## Releasing a new Docker image
+
+Tag with `docker-YYMMDD` and push.
+
+Example:
+```
+git tag docker-190311
+git push --tags
+```
+
+Then Docker Hub will build automatically and eventually we have a new image
+[`pavics/workflow-tests:190311`](https://hub.docker.com/r/pavics/workflow-tests).
