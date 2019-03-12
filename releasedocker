@@ -1,0 +1,25 @@
+#!/bin/sh -x
+
+OLD_VER="$1"; shift
+NEW_VER="$1"; shift
+
+update_ver() {
+    FILE="$1"
+    sed -i "s@pavics/workflow-tests:$OLD_VER@pavics/workflow-tests:$NEW_VER@g" $FILE
+}
+
+update_ver launchcontainer
+update_ver launchnotebook
+update_ver Jenkinsfile
+
+git add launchcontainer launchnotebook Jenkinsfile
+git st -v
+echo "Looks good to commit? (Ctrl-C to abort)"; read a
+
+git ci -m "update to use image pavics/workflow-tests:$NEW_VER"
+git show
+echo "Looks good to tag and push? (Ctrl-C to abort)"; read a
+
+git tag docker-$NEW_VER
+git push
+git push --tags

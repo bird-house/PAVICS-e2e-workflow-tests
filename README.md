@@ -64,6 +64,9 @@ checked out on your local machine.
 
 ## Releasing a new Docker image
 
+All the steps below can be automated by using the script `releasedocker
+<old_ver> <new_ver>`, example: `releasedocker 190311 190312`.
+
 Update `Jenkinsfile`, `launchcontainer`, `launchnotebook` with the soon to
 build `pavics/workflow-tests` image tag.
 
