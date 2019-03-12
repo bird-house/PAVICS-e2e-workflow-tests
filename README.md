@@ -9,6 +9,12 @@ Test user-level workflow.
 
 ./runtest  # run all notebooks under folder notebooks/
 ./runtest notebooks/hummingbird.ipynb  # run just 1 notebook
+
+# download more repos containing notebooks (ex: pavics-sdi)
+./downloadrepos
+
+# run all notebooks from pavics-sdi
+./runtest 'pavics-sdi-master/docs/source/notebooks/*.ipynb'
 ```
 
 ## Design considerations

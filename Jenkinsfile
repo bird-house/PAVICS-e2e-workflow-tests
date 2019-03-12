@@ -15,6 +15,14 @@ pipeline {
                 }
             }
         }
+        stage('Run tests from other repos') {
+            steps {
+                script {
+                    sh("./downloadrepos")
+                    sh("./runtest 'pavics-sdi-master/docs/source/notebooks/*.ipynb'")
+                }
+            }
+        }
     }
     options {
         ansiColor('xterm')

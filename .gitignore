@@ -1,2 +1,8 @@
+# vim temp files
+*.swp
+
 # jupyter notebooks temp files
 .ipynb_checkpoints
+
+# extra repos downloaded
+pavics-sdi-master/
