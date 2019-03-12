@@ -6,7 +6,7 @@ if [ -z "$PORT" ]; then
     PORT=8890
 fi
 
-IMAGE="pavics/workflow-tests:latest"
+IMAGE="pavics/workflow-tests:190311"
 
 # 1000 is the jenkins user inside the image
 docker run -u 1000:1000 --rm --name birdy-notebook -p $PORT:$PORT -v `pwd`:`pwd` $IMAGE jupyter notebook --ip=0.0.0.0 --port=$PORT --no-browser

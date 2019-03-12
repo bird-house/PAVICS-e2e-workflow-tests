@@ -64,11 +64,18 @@ checked out on your local machine.
 
 ## Releasing a new Docker image
 
-Tag with `docker-YYMMDD` and push.
+Update `Jenkinsfile`, `launchcontainer`, `launchnotebook` with the soon to
+build `pavics/workflow-tests` image tag.
+
+Tag with `docker-YYMMDD` and push and the Docker image tag will be the `YYMMDD` part.
 
 Example:
 ```
+$EDITOR Jenkinsfile launchcontainer launchnotebook
+# update to pavics/workflow-tests:190311
+git ci -am "update to use image pavics/workflow-tests:190311"
 git tag docker-190311
+git push
 git push --tags
 ```
 
