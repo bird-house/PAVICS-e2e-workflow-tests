@@ -35,6 +35,8 @@ pipeline {
         timestamps()
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
-        buildDiscarder(logRotator(numToKeepStr: '20'))
+        // trying to keep 2 months worth of history with buffer for manual
+        // build trigger
+        buildDiscarder(logRotator(numToKeepStr: '100'))
     }
 }
