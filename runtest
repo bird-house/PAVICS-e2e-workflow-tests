@@ -1,0 +1,14 @@
+#!/bin/sh
+
+NOTEBOOKS="$1"
+if [ -z "$NOTEBOOKS" ]; then
+    NOTEBOOKS="notebooks/*.ipynb"
+fi
+
+if [ ! -z "$PAVICS_HOST" ]; then
+    echo "Will run notebooks against $PAVICS_HOST"
+    sed -i "s/pavics.ouranos.ca/$PAVICS_HOST/g" $NOTEBOOKS
+    git diff  # not working for notebooks from other repos
+fi
+
+py.test --nbval $NOTEBOOKS --sanitize-with notebooks/output-sanitize.cfg

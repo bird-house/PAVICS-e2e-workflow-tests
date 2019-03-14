@@ -1,0 +1,18 @@
+#!/bin/sh
+
+downloadrepos() {
+    github_repo="$1"; shift
+    branch="$1"; shift
+
+    curl --location --silent \
+        $github_repo/archive/${branch}.tar.gz | tar xz
+}
+
+if [ -z "$1" ]; then
+    set -x
+    rm -rf pavics-sdi-master
+    downloadrepos https://github.com/Ouranosinc/pavics-sdi master
+else
+    set -x
+    downloadrepos "$@"
+fi
