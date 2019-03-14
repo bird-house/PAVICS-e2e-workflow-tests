@@ -1,3 +1,5 @@
+String cron_only_on_master = env.BRANCH_NAME == "master" ? "@midnight" : ""
+
 pipeline {
     // Guide book on Jenkins declarative pipelines
     // https://jenkins.io/doc/book/pipeline/syntax/
@@ -7,10 +9,16 @@ pipeline {
             label 'linux && docker'
         }
     }
+
     parameters {
         string(name: 'PAVICS_HOST', defaultValue: 'pavics.ouranos.ca',
                description: 'Pavics host to run notebooks against.', trim: true)
     }
+
+    triggers {
+        cron(cron_only_on_master)
+    }
+
     stages {
         stage('Run tests') {
             steps {
@@ -21,6 +29,7 @@ pipeline {
             }
         }
     }
+
     options {
         ansiColor('xterm')
         timestamps()
