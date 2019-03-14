@@ -15,6 +15,10 @@ Test user-level workflow.
 
 # run all notebooks from pavics-sdi
 ./runtest 'pavics-sdi-master/docs/source/notebooks/*.ipynb'
+
+# run against another PAVICS host than pavics.ouranos.ca
+# this assume the PAVICS host hardcoded inside the notebooks is pavics.ouranos.ca
+PAVICS_HOST=host.example.com ./runtest
 ```
 
 ## Design considerations

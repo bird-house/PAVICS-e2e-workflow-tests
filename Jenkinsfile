@@ -7,6 +7,10 @@ pipeline {
             label 'linux && docker'
         }
     }
+    parameters {
+        string(name: 'PAVICS_HOST', defaultValue: 'pavics.ouranos.ca',
+               description: 'Pavics host to run notebooks against.', trim: true)
+    }
     stages {
         stage('Run tests') {
             steps {
@@ -16,7 +20,7 @@ pipeline {
                 }
             }
         }
-   }
+    }
     options {
         ansiColor('xterm')
         timestamps()
