@@ -8,5 +8,14 @@ fi
 
 IMAGE="pavics/workflow-tests:190312.1"
 
-# 1000 is the jenkins user inside the image
-docker run -u 1000:1000 --rm --name birdy-notebook -p $PORT:$PORT -v `pwd`:`pwd` $IMAGE jupyter notebook --ip=0.0.0.0 --port=$PORT --no-browser
+UID="`id -u`"
+GID="`id -g`"
+
+# launch with current user UID and GID to not have write permission problems
+docker run --rm --name birdy-notebook \
+    -p $PORT:$PORT -v `pwd`:`pwd` $IMAGE \
+    bash -c "groupmod -g $GID jenkins; \
+             usermod -u $UID jenkins; \
+             echo 'ENV_PATH PATH=/usr/local/envs/birdy/bin:/opt/conda/bin:/usr/local/bin:/usr/bin:/bin' >> /etc/login.defs; \
+             su jenkins -s /bin/bash -c \
+                 'jupyter notebook --ip=0.0.0.0 --port=$PORT --no-browser'"

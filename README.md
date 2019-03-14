@@ -71,6 +71,11 @@ then navigate to
 if `/home/lvu/repos/PAVICS-e2e-workflow-tests` is where you have this repo
 checked out on your local machine.
 
+To stop the notebook:
+```
+docker stop birdy-notebook  # the container created by launchnotebook
+```
+
 
 ## Releasing a new Docker image
 
