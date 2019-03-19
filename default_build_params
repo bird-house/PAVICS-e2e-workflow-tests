@@ -1,0 +1,8 @@
+if [ -z "$PAVICS_SDI_BRANCH" ]; then
+    PAVICS_SDI_BRANCH=master
+    echo "PAVICS_SDI_BRANCH not set, default to '$PAVICS_SDI_BRANCH'"
+else
+    echo "PAVICS_SDI_BRANCH has been set to '$PAVICS_SDI_BRANCH'"
+fi
+
+

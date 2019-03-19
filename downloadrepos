@@ -8,10 +8,12 @@ downloadrepos() {
         $github_repo/archive/${branch}.tar.gz | tar xz
 }
 
+. ./default_build_params
+
 if [ -z "$1" ]; then
     set -x
-    rm -rf pavics-sdi-master
-    downloadrepos https://github.com/Ouranosinc/pavics-sdi master
+    rm -rf pavics-sdi-$PAVICS_SDI_BRANCH
+    downloadrepos https://github.com/Ouranosinc/pavics-sdi $PAVICS_SDI_BRANCH
 else
     set -x
     downloadrepos "$@"

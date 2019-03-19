@@ -13,6 +13,8 @@ pipeline {
     parameters {
         string(name: 'PAVICS_HOST', defaultValue: 'pavics.ouranos.ca',
                description: 'Pavics host to run notebooks against.', trim: true)
+        string(name: 'PAVICS_SDI_BRANCH', defaultValue: 'master',
+               description: 'https://github.com/Ouranosinc/pavics-sdi branch to test against.', trim: true)
     }
 
     triggers {
@@ -23,8 +25,7 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
-                    sh("./downloadrepos")
-                    sh("./runtest 'notebooks/*.ipynb pavics-sdi-master/docs/source/notebooks/*.ipynb'")
+                    sh("./testall")
                 }
             }
         }

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. ./default_build_params
+
+set -x
+./downloadrepos
+./runtest "notebooks/*.ipynb \
+    pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
