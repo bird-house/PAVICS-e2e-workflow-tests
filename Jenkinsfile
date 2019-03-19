@@ -25,7 +25,15 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
-                    sh("./testall")
+                    withCredentials(
+                        [usernamePassword(credentialsId: 'esgf_auth',
+                                          passwordVariable: 'ESGF_AUTH_PASSWORD',
+                                          usernameVariable: 'ESGF_AUTH_USERNAME'),
+                         string(credentialsId: 'esgf_auth_token',
+                                variable: 'ESGF_AUTH_TOKEN')
+                         ]) {
+                        sh("./testall")
+                    }
                 }
             }
         }
