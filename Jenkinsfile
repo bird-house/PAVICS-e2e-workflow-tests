@@ -39,6 +39,13 @@ pipeline {
         }
     }
 
+    post {
+        always {
+            archiveArtifacts(artifacts: 'environment-export-birdy.yml, conda-list-explicit-birdy.txt, notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb',
+                             fingerprint: true)
+        }
+    }
+
     options {
         ansiColor('xterm')
         timestamps()

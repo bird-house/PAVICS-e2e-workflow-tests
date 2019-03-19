@@ -12,3 +12,19 @@ PAVICS_SDI_BRANCH="`echo "$PAVICS_SDI_BRANCH" | sed "s@/@-@g"`"
 
 ./runtest "notebooks/*.ipynb \
     pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
+EXIT_CODE="$?"
+
+
+### Save conda env details for manual reproducibility outside of docker image.
+
+ENV_EXPORT_FILE="environment-export-birdy.yml"
+rm -fv $ENV_EXPORT_FILE
+conda env export -n birdy > $ENV_EXPORT_FILE
+
+LIST_EXPLICIT_FILE="conda-list-explicit-birdy.txt"
+rm -fv $LIST_EXPLICIT_FILE
+conda list -n birdy --explicit > $LIST_EXPLICIT_FILE
+
+
+# exit with runtest exit code
+exit $EXIT_CODE

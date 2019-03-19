@@ -7,3 +7,7 @@
 # extra repos downloaded
 pavics-sdi-*/
 esgf-compute-api-*/
+
+# files produced by build
+conda-list-explicit-birdy.txt
+environment-export-birdy.yml
