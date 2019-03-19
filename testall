@@ -4,5 +4,11 @@
 
 set -x
 ./downloadrepos
+
+# replace all slash (/) by dash (-) because (/) is illegal in folder name
+# for branch name of the format "feature/my_wizbang-feature"
+# github does the same when downloading repo archive by downloadrepos above
+PAVICS_SDI_BRANCH="`echo "$PAVICS_SDI_BRANCH" | sed "s@/@-@g"`"
+
 ./runtest "notebooks/*.ipynb \
     pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"

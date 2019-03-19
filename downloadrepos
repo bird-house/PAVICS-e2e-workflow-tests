@@ -12,8 +12,11 @@ downloadrepos() {
 
 if [ -z "$1" ]; then
     set -x
-    rm -rf pavics-sdi-$PAVICS_SDI_BRANCH
+    # clean up other previously downloaded branches of the same repo as well
+    rm -rf pavics-sdi-*
+    ls | grep pavics-sdi
     downloadrepos https://github.com/Ouranosinc/pavics-sdi $PAVICS_SDI_BRANCH
+    ls | grep pavics-sdi
 else
     set -x
     downloadrepos "$@"
