@@ -12,9 +12,11 @@ pipeline {
 
     parameters {
         string(name: 'PAVICS_HOST', defaultValue: 'pavics.ouranos.ca',
-               description: 'Pavics host to run notebooks against.', trim: true)
+               description: 'PAVICS host to run notebooks against.', trim: true)
         string(name: 'PAVICS_SDI_BRANCH', defaultValue: 'master',
                description: 'https://github.com/Ouranosinc/pavics-sdi branch to test against.', trim: true)
+        booleanParam(name: 'VERIFY_SSL', defaultValue: true,
+                     description: 'Check the box to verify SSL certificate for https connections to PAVICS host.')
     }
 
     triggers {
@@ -32,7 +34,7 @@ pipeline {
                          string(credentialsId: 'esgf_auth_token',
                                 variable: 'ESGF_AUTH_TOKEN')
                          ]) {
-                        sh("./testall")
+                        sh("VERIFY_SSL=${params.VERIFY_SSL} ./testall")
                     }
                 }
             }

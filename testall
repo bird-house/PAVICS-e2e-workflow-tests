@@ -10,6 +10,17 @@ set -x
 # github does the same when downloading repo archive by downloadrepos above
 PAVICS_SDI_BRANCH="`echo "$PAVICS_SDI_BRANCH" | sed "s@/@-@g"`"
 
+# lowercase VERIFY_SSL string
+VERIFY_SSL="`echo "$VERIFY_SSL" | tr '[:upper:]' '[:lower:]'`"
+if [ x"$VERIFY_SSL" = xfalse ]; then
+    # if Env var DISABLE_VERIFY_SSL is present, notebook should disable ssl
+    # cert verification
+    # in notebook use:
+    # verify_ssl = True if 'DISABLE_VERIFY_SSL' not in os.environ else False
+    export DISABLE_VERIFY_SSL=1
+    echo "setting env var DISABLE_VERIFY_SSL for notebooks"
+fi
+
 ./runtest "notebooks/*.ipynb \
     pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
 EXIT_CODE="$?"
