@@ -17,3 +17,5 @@ dependencies:
   - nbval
   # to edit .ipynb
   - jupyter
+  # to diff .ipynb files
+  - nbdime
