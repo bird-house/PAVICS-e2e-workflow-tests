@@ -46,6 +46,13 @@ pipeline {
             archiveArtifacts(artifacts: 'environment-export-birdy.yml, conda-list-explicit-birdy.txt, notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb',
                              fingerprint: true)
         }
+	unsuccessful {  // Run if the current builds status is "Aborted", "Failure" or "Unstable"
+            step([$class: 'Mailer', notifyEveryUnstableBuild: false,
+                  recipients: emailextrecipients([
+                        // enable once stable [$class: 'CulpritsRecipientProvider'],
+                        // [$class: 'DevelopersRecipientProvider'],
+                        [$class: 'RequesterRecipientProvider']])])
+	}
     }
 
     options {
