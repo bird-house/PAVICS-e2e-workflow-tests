@@ -18,3 +18,30 @@ fi
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 
 py.test --nbval $NOTEBOOKS --sanitize-with notebooks/output-sanitize.cfg
+EXIT_CODE="$?"
+
+# lowercase SAVE_RESULTING_NOTEBOOK string
+SAVE_RESULTING_NOTEBOOK="`echo "$SAVE_RESULTING_NOTEBOOK" | tr '[:upper:]' '[:lower:]'`"
+
+
+# save notebooks resulting from the run
+# this might not be the same as what py.test have seen since it's another run
+
+# user can manually diff the original with the resulting notebooks this way:
+# nbdiff original.ipynb resulting.ipynb.output.ipynb (conda install nbdime)
+
+# work-around as nbval can not save the result of the run
+# see https://github.com/computationalmodelling/nbval/issues/112
+
+if [ x"$SAVE_RESULTING_NOTEBOOK" = xtrue ]; then
+    mkdir -p buildout
+    for nb in $NOTEBOOKS; do
+        filename="`basename "$nb"`"
+        jupyter nbconvert --to notebook --execute \
+            --ExecutePreprocessor.timeout=60 --allow-errors \
+            --output-dir buildout --output ${filename}.output.ipynb $nb
+    done
+fi
+
+# exit with return code from py.test
+exit $EXIT_CODE
