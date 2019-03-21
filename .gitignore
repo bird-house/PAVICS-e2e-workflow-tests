@@ -5,4 +5,9 @@
 .ipynb_checkpoints
 
 # extra repos downloaded
-pavics-sdi-master/
+pavics-sdi-*/
+esgf-compute-api-*/
+
+# files produced by build
+conda-list-explicit-birdy.txt
+environment-export-birdy.yml

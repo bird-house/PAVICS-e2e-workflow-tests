@@ -12,7 +12,11 @@ pipeline {
 
     parameters {
         string(name: 'PAVICS_HOST', defaultValue: 'pavics.ouranos.ca',
-               description: 'Pavics host to run notebooks against.', trim: true)
+               description: 'PAVICS host to run notebooks against.', trim: true)
+        string(name: 'PAVICS_SDI_BRANCH', defaultValue: 'master',
+               description: 'https://github.com/Ouranosinc/pavics-sdi branch to test against.', trim: true)
+        booleanParam(name: 'VERIFY_SSL', defaultValue: true,
+                     description: 'Check the box to verify SSL certificate for https connections to PAVICS host.')
     }
 
     triggers {
@@ -23,11 +27,32 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
-                    sh("./downloadrepos")
-                    sh("./runtest 'notebooks/*.ipynb pavics-sdi-master/docs/source/notebooks/*.ipynb'")
+                    withCredentials(
+                        [usernamePassword(credentialsId: 'esgf_auth',
+                                          passwordVariable: 'ESGF_AUTH_PASSWORD',
+                                          usernameVariable: 'ESGF_AUTH_USERNAME'),
+                         string(credentialsId: 'esgf_auth_token',
+                                variable: 'ESGF_AUTH_TOKEN')
+                         ]) {
+                        sh("VERIFY_SSL=${params.VERIFY_SSL} ./testall")
+                    }
                 }
             }
         }
+    }
+
+    post {
+        always {
+            archiveArtifacts(artifacts: 'environment-export-birdy.yml, conda-list-explicit-birdy.txt, notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb',
+                             fingerprint: true)
+        }
+	unsuccessful {  // Run if the current builds status is "Aborted", "Failure" or "Unstable"
+            step([$class: 'Mailer', notifyEveryUnstableBuild: false,
+                  recipients: emailextrecipients([
+                        // enable once stable [$class: 'CulpritsRecipientProvider'],
+                        // [$class: 'DevelopersRecipientProvider'],
+                        [$class: 'RequesterRecipientProvider']])])
+	}
     }
 
     options {

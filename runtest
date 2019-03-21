@@ -5,10 +5,16 @@ if [ -z "$NOTEBOOKS" ]; then
     NOTEBOOKS="notebooks/*.ipynb"
 fi
 
+set -x
+
 if [ ! -z "$PAVICS_HOST" ]; then
     echo "Will run notebooks against $PAVICS_HOST"
     sed -i "s/pavics.ouranos.ca/$PAVICS_HOST/g" $NOTEBOOKS
     git diff  # not working for notebooks from other repos
 fi
+
+# suppress "InsecureRequestWarning: Unverified HTTPS request is being made"
+# so tests still pass when user want to disable ssl cert verification
+export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 
 py.test --nbval $NOTEBOOKS --sanitize-with notebooks/output-sanitize.cfg
