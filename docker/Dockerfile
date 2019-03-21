@@ -22,3 +22,9 @@ ENV PATH="/usr/local/envs/birdy/bin:$PATH"
 # our notebooks are hardcoded to lookup for kernel named 'birdy'
 # this python is from the birdy env above
 RUN python -m ipykernel install --name birdy
+
+# install using same channel preferences as birdy original env to not downgrade
+# anything accidentally
+# this is for debug only, all dependencies should be specified in
+# environment.yml above
+# RUN conda install -n birdy -c birdhouse -c conda-forge -c default nbdime
