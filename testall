@@ -3,6 +3,11 @@
 . ./default_build_params
 
 set -x
+
+# emulate "clean after checkout" of single branch pipeline
+git clean -fdx
+
+# download all additional repos containing extra notebooks to test
 ./downloadrepos
 
 # replace all slash (/) by dash (-) because (/) is illegal in folder name
