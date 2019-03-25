@@ -19,6 +19,19 @@ Test user-level workflow.
 # run against another PAVICS host than pavics.ouranos.ca
 # this assume the PAVICS host hardcoded inside the notebooks is pavics.ouranos.ca
 PAVICS_HOST=host.example.com ./runtest
+
+# disable SSL cert verification for notebooks that support this flag
+# useful together with PAVICS_HOST to hit hosts using self-signed SSL cert
+DISABLE_VERIFY_SSL=1 ./runtest
+
+# save output of test run as a notebook, ending with .outout.ipynb
+# each input notebook will have corresponding .output.ipynb file under
+#   buildout/ dir
+# CAVEAT:
+#   * run time is double as a different run is needed
+#   * might not contain the exact same error as the original run since it's a
+#     different run
+SAVE_RESULTING_NOTEBOOK=true ./runtest
 ```
 
 ## Design considerations
