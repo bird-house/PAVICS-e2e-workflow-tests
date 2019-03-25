@@ -27,4 +27,4 @@ RUN python -m ipykernel install --name birdy
 # anything accidentally
 # this is for debug only, all dependencies should be specified in
 # environment.yml above
-# RUN conda install -n birdy -c birdhouse -c conda-forge -c default nbdime
+# RUN conda install -n birdy -c birdhouse -c conda-forge -c defaults nbdime

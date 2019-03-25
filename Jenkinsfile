@@ -5,7 +5,7 @@ pipeline {
     // https://jenkins.io/doc/book/pipeline/syntax/
     agent {
         docker {
-            image "pavics/workflow-tests:190312.1"
+            image "pavics/workflow-tests:190321"
             label 'linux && docker'
         }
     }
@@ -17,6 +17,9 @@ pipeline {
                description: 'https://github.com/Ouranosinc/pavics-sdi branch to test against.', trim: true)
         booleanParam(name: 'VERIFY_SSL', defaultValue: true,
                      description: 'Check the box to verify SSL certificate for https connections to PAVICS host.')
+        booleanParam(name: 'SAVE_RESULTING_NOTEBOOK', defaultValue: true,
+                     description: '''Check the box to save the resulting notebooks of the run.
+Note this is another run, will double the time and no guaranty to have same error as the run from py.test.''')
     }
 
     triggers {
@@ -34,7 +37,9 @@ pipeline {
                          string(credentialsId: 'esgf_auth_token',
                                 variable: 'ESGF_AUTH_TOKEN')
                          ]) {
-                        sh("VERIFY_SSL=${params.VERIFY_SSL} ./testall")
+                        sh("VERIFY_SSL=${params.VERIFY_SSL} \
+                            SAVE_RESULTING_NOTEBOOK=${params.SAVE_RESULTING_NOTEBOOK} \
+                            ./testall")
                     }
                 }
             }
@@ -43,7 +48,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts(artifacts: 'environment-export-birdy.yml, conda-list-explicit-birdy.txt, notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb',
+            archiveArtifacts(artifacts: 'environment-export-birdy.yml, conda-list-explicit-birdy.txt, notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb, buildout/*.output.ipynb',
                              fingerprint: true)
         }
 	unsuccessful {  // Run if the current builds status is "Aborted", "Failure" or "Unstable"
@@ -59,7 +64,6 @@ pipeline {
         ansiColor('xterm')
         timestamps()
         timeout(time: 1, unit: 'HOURS')
-        disableConcurrentBuilds()
         // trying to keep 2 months worth of history with buffer for manual
         // build trigger
         buildDiscarder(logRotator(numToKeepStr: '100'))
