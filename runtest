@@ -37,6 +37,7 @@ if [ x"$SAVE_RESULTING_NOTEBOOK" = xtrue ]; then
     mkdir -p buildout
     for nb in $NOTEBOOKS; do
         filename="`basename "$nb"`"
+        filename="`echo "$filename" | sed "s/.ipynb$//"`"  # remove .ipynb ext
         jupyter nbconvert --to notebook --execute \
             --ExecutePreprocessor.timeout=60 --allow-errors \
             --output-dir buildout --output ${filename}.output.ipynb $nb
