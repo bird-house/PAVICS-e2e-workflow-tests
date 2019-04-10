@@ -2,6 +2,35 @@
 Test user-level workflow.
 
 
+## Description
+This repo ensure the various Jupyter notebooks run without errors against the
+chosen PAVICS server and still produce the same output.
+
+Resulting benefits:
+
+* Those Jupyter notebooks that are the test suite also double as documentation
+  for the features provided to the end users.  More incentive to write more
+  documentations and more tests since writing one and the other one comes for
+  free!
+
+* Those test suite are also useful during upgrade of some parts of the system
+  since we are able to target different PAVICS servers with the same test suite.
+
+* Jenkins (see [Jenkinsfile](Jenkinsfile)) is configured to run the test suite
+  regularly so we are able to detect regressions on servers or out-of-date
+  output or code in the Jupyter notebooks.  No more mismatched, outdated
+  documentation!
+
+* Indirectly this also serve as a monitoring tool for the servers.  Standard
+  monitoring tools normally just ensure the services are up and running.  This
+  will actually monitor that the most useful and frequently used user workflows
+  are working end-to-end.
+
+[pytest](https://pytest.org/) is used as test framework together with
+[nbval](https://github.com/computationalmodelling/nbval) pytest plugin to
+validate Jupyter notebooks.
+
+
 ## Run locally
 
 ```
@@ -46,6 +75,13 @@ successfully on Jenkins.
 Therefore we do not need to pin any versions in the conda environment.yml file
 since the built docker image provided us with pinned version for
 reproducibility.
+
+To encourage more notebooks written/contribution, which means more
+documentations and more tests, it is easy to add new notebooks and the test
+runner can even run notebooks from several external repos (current also
+running the notebooks from the
+[pavics-sdi](https://github.com/Ouranosinc/pavics-sdi/tree/master/docs/source/notebooks)
+repo, more can be added easily).
 
 
 ## Adding more notebooks to tests
