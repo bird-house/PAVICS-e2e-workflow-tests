@@ -28,3 +28,21 @@ RUN python -m ipykernel install --name birdy
 # this is for debug only, all dependencies should be specified in
 # environment.yml above
 # RUN conda install -n birdy -c birdhouse -c conda-forge -c defaults nbdime
+
+# build jupyterlab extensions installed by conda, see `jupyter labextension list`
+RUN jupyter lab build
+
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start.sh /usr/local/bin/
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start-singleuser.sh /usr/local/bin/
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start-notebook.sh /usr/local/bin/
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/fix-permissions /usr/local/bin/
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/jupyter_notebook_config.py /etc/jupyter/
+RUN chmod a+rx /usr/local/bin/start.sh /usr/local/bin/start-singleuser.sh /usr/local/bin/start-notebook.sh /usr/local/bin/fix-permissions; \
+    chmod a+r /etc/jupyter/jupyter_notebook_config.py
+
+# problem running start-notebook.sh when being root
+# the jupyter/base-notebook image also do not default to root user so we do the same here
+USER jenkins
+
+# follow jupyter/base-notebook image so config in jupyterhub is simpler
+CMD ["/usr/local/bin/start-notebook.sh"]
