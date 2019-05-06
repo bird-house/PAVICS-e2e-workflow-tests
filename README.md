@@ -26,9 +26,10 @@ Resulting benefits:
   will actually monitor that the most useful and frequently used user workflows
   are working end-to-end.
 
-[pytest](https://pytest.org/) is used as test framework together with
-[nbval](https://github.com/computationalmodelling/nbval) pytest plugin to
+[nbval](https://github.com/computationalmodelling/nbval) pytest plugin used to
 validate Jupyter notebooks.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Ouranosinc/PAVICS-e2e-workflow-tests/master)
 
 
 ## Run locally
@@ -62,8 +63,6 @@ DISABLE_VERIFY_SSL=1 ./runtest
 #     different run
 SAVE_RESULTING_NOTEBOOK=true ./runtest
 ```
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Ouranosinc/PAVICS-e2e-workflow-tests/master)
 
 ## Design considerations
 
