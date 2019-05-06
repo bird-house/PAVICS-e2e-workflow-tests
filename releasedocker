@@ -11,8 +11,9 @@ update_ver() {
 update_ver launchcontainer
 update_ver launchnotebook
 update_ver Jenkinsfile
+update_ver binder/Dockerfile
 
-git add launchcontainer launchnotebook Jenkinsfile
+git add launchcontainer launchnotebook Jenkinsfile binder/Dockerfile
 git st -v
 echo "Looks good to commit? (Ctrl-C to abort)"; read a
 
