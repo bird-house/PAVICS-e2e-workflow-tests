@@ -63,7 +63,7 @@ DISABLE_VERIFY_SSL=1 ./runtest
 SAVE_RESULTING_NOTEBOOK=true ./runtest
 ```
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Ouranosinc/PAVICS-e2e-workflow-tests/master?filepath=notebooks)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Ouranosinc/PAVICS-e2e-workflow-tests/master)
 
 ## Design considerations
 
