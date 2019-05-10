@@ -5,4 +5,9 @@ else
     echo "PAVICS_SDI_BRANCH has been set to '$PAVICS_SDI_BRANCH'"
 fi
 
-
+if [ -z "$RAVEN_BRANCH" ]; then
+    RAVEN_BRANCH=master
+    echo "RAVEN_BRANCH not set, default to '$RAVEN_BRANCH'"
+else
+    echo "RAVEN_BRANCH has been set to '$RAVEN_BRANCH'"
+fi

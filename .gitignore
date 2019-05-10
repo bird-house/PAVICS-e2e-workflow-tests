@@ -6,6 +6,7 @@
 
 # extra repos downloaded
 pavics-sdi-*/
+raven-*/
 esgf-compute-api-*/
 
 # files produced by build

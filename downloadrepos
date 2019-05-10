@@ -8,15 +8,23 @@ downloadrepos() {
         $github_repo/archive/${branch}.tar.gz | tar xz
 }
 
+downloadouranosrepos() {
+    repo_name="$1"; shift
+    repo_branch="$1"; shift
+    set -x
+    # clean up other previously downloaded branches of the same repo as well
+    rm -rf ${repo_name}-*
+    ls | grep $repo_name
+    downloadrepos https://github.com/Ouranosinc/$repo_name $repo_branch
+    ls | grep $repo_name
+    set +x
+}
+
 . ./default_build_params
 
 if [ -z "$1" ]; then
-    set -x
-    # clean up other previously downloaded branches of the same repo as well
-    rm -rf pavics-sdi-*
-    ls | grep pavics-sdi
-    downloadrepos https://github.com/Ouranosinc/pavics-sdi $PAVICS_SDI_BRANCH
-    ls | grep pavics-sdi
+    downloadouranosrepos pavics-sdi $PAVICS_SDI_BRANCH
+    downloadouranosrepos raven $RAVEN_BRANCH
 else
     set -x
     downloadrepos "$@"

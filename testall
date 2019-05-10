@@ -14,6 +14,7 @@ git clean -fdx
 # for branch name of the format "feature/my_wizbang-feature"
 # github does the same when downloading repo archive by downloadrepos above
 PAVICS_SDI_BRANCH="`echo "$PAVICS_SDI_BRANCH" | sed "s@/@-@g"`"
+RAVEN_BRANCH="`echo "$RAVEN_BRANCH" | sed "s@/@-@g"`"
 
 # lowercase VERIFY_SSL string
 VERIFY_SSL="`echo "$VERIFY_SSL" | tr '[:upper:]' '[:lower:]'`"
@@ -28,6 +29,7 @@ fi
 
 ./runtest "notebooks/*.ipynb \
     pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
+# raven-$RAVEN_BRANCH/docs/source/notebooks/*.ipynb
 EXIT_CODE="$?"
 
 

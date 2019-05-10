@@ -15,6 +15,8 @@ pipeline {
                description: 'PAVICS host to run notebooks against.', trim: true)
         string(name: 'PAVICS_SDI_BRANCH', defaultValue: 'master',
                description: 'https://github.com/Ouranosinc/pavics-sdi branch to test against.', trim: true)
+//        string(name: 'RAVEN_BRANCH', defaultValue: 'master',
+//               description: 'https://github.com/Ouranosinc/raven branch to test against.', trim: true)
         booleanParam(name: 'VERIFY_SSL', defaultValue: true,
                      description: 'Check the box to verify SSL certificate for https connections to PAVICS host.')
         booleanParam(name: 'SAVE_RESULTING_NOTEBOOK', defaultValue: true,
