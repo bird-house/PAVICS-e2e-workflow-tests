@@ -29,7 +29,11 @@ Resulting benefits:
 [nbval](https://github.com/computationalmodelling/nbval) pytest plugin used to
 validate Jupyter notebooks.
 
+## Launch Jupyter Notebook server using Binder
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Ouranosinc/PAVICS-e2e-workflow-tests/master)
+
+Click the Binder button above to launch a Jupyter Notebook server on Binder's
+cloud to test out all the notebooks in this test suite.
 
 
 ## Run locally
