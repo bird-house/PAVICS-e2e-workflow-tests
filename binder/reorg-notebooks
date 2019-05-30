@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mv -v pavics-sdi-*/docs/source/notebooks/*.ipynb ./
+rm -rfv pavics-sdi-*
