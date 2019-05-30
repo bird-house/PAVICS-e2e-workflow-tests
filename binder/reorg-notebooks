@@ -2,3 +2,6 @@
 
 mv -v pavics-sdi-*/docs/source/notebooks/*.ipynb ./
 rm -rfv pavics-sdi-*
+
+mv -v finch-*/docs/source/notebooks/*.ipynb ./
+rm -rfv finch-*
