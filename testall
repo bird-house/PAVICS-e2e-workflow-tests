@@ -28,6 +28,9 @@ if [ x"$VERIFY_SSL" = xfalse ]; then
     echo "setting env var DISABLE_VERIFY_SSL for notebooks"
 fi
 
+# presence of this file confuse py.test execution rootdir discovery
+rm -v finch-$FINCH_BRANCH/setup.cfg
+
 ./runtest "notebooks/*.ipynb \
     finch-$FINCH_BRANCH/docs/source/notebooks/*.ipynb \
     pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
