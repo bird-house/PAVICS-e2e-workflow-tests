@@ -15,7 +15,9 @@ GID="`id -g`"
 
 # launch with current user UID and GID to not have write permission problems
 docker run --rm --name birdy-notebook \
-    -p $PORT:$PORT -u 0:0 -v `pwd`:`pwd` $DOCKER_IMAGE \
+    -p $PORT:$PORT -u 0:0 -v `pwd`:`pwd` \
+    $DOCKER_RUN_OPTS \
+    $DOCKER_IMAGE \
     bash -c "groupmod -g $GID jenkins; \
              usermod -u $UID jenkins; \
              echo 'ENV_PATH PATH=/usr/local/envs/birdy/bin:/opt/conda/bin:/usr/local/bin:/usr/bin:/bin' >> /etc/login.defs; \
