@@ -5,6 +5,13 @@ else
     echo "PAVICS_SDI_BRANCH has been set to '$PAVICS_SDI_BRANCH'"
 fi
 
+if [ -z "$FINCH_BRANCH" ]; then
+    FINCH_BRANCH=master
+    echo "FINCH_BRANCH not set, default to '$FINCH_BRANCH'"
+else
+    echo "FINCH_BRANCH has been set to '$FINCH_BRANCH'"
+fi
+
 if [ -z "$RAVEN_BRANCH" ]; then
     RAVEN_BRANCH=master
     echo "RAVEN_BRANCH not set, default to '$RAVEN_BRANCH'"
