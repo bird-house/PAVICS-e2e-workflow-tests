@@ -32,6 +32,9 @@ RUN python -m ipykernel install --name birdy
 # build jupyterlab extensions installed by conda, see `jupyter labextension list`
 RUN jupyter lab build
 
+# for ipywidgets to work with jupyter lab (notebooks works out of the box)
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start.sh /usr/local/bin/
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start-singleuser.sh /usr/local/bin/
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start-notebook.sh /usr/local/bin/
