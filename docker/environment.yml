@@ -23,3 +23,7 @@ dependencies:
   - jupyterhub
   # to diff .ipynb files
   - nbdime
+  # for pip packages
+  - pip
+  - pip:
+    - xclim

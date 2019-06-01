@@ -2,15 +2,15 @@ FROM conda/miniconda3
 
 RUN conda update conda
 
-COPY environment.yml /environment.yml
-
-# create env "birdy"
-RUN conda env create -f /environment.yml
-
 # to checkout other notebooks and to run pip install
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y git mercurial gcc && \
     apt-get clean
+
+COPY environment.yml /environment.yml
+
+# create env "birdy"
+RUN conda env create -f /environment.yml
 
 # needed for our specific jenkins
 RUN groupadd --gid 1000 jenkins \
