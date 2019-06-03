@@ -1,7 +1,7 @@
 #!/bin/sh -x
 
 if [ -z "$DOCKER_IMAGE" ]; then
-    DOCKER_IMAGE="pavics/workflow-tests:190529"
+    DOCKER_IMAGE="pavics/workflow-tests:190603"
 fi
 
 UID="`id -u`"
