@@ -51,6 +51,10 @@ LIST_EXPLICIT_FILE="$ENV_DUMP_DIR/conda-list-explicit-birdy.txt"
 rm -fv $LIST_EXPLICIT_FILE
 conda list -n birdy --explicit > $LIST_EXPLICIT_FILE
 
+PIP_FREEZE_FILE="$ENV_DUMP_DIR/pip-freeze-birdy-requirements.txt"
+rm -fv $PIP_FREEZE_FILE
+pip freeze > $PIP_FREEZE_FILE
+
 
 # exit with runtest exit code
 exit $EXIT_CODE
