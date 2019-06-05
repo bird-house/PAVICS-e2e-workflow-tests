@@ -12,6 +12,7 @@ dependencies:
   - netcdf4
   - pydap
   - cartopy
+  - xclim
   # tests
   - pytest
   - nbval
@@ -23,3 +24,8 @@ dependencies:
   - jupyterhub
   # to diff .ipynb files
   - nbdime
+  # for pip packages
+  - pip
+  - pip:
+    # visual debugger for Jupyter Notebook, not working with JupyterLab at this moment
+    - pixiedust

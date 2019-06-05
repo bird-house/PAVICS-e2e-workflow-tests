@@ -5,7 +5,7 @@ pipeline {
     // https://jenkins.io/doc/book/pipeline/syntax/
     agent {
         docker {
-            image "pavics/workflow-tests:190529"
+            image "pavics/workflow-tests:190605.1"
             label 'linux && docker'
         }
     }
@@ -52,7 +52,7 @@ Note this is another run, will double the time and no guaranty to have same erro
 
     post {
         always {
-            archiveArtifacts(artifacts: 'environment-export-birdy.yml, conda-list-explicit-birdy.txt, notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb, finch-*/docs/source/notebooks/*.ipynb, buildout/*.output.ipynb',
+            archiveArtifacts(artifacts: 'notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb, finch-*/docs/source/notebooks/*.ipynb, buildout/*.output.ipynb, buildout/env-dump/',
                              fingerprint: true)
         }
 	unsuccessful {  // Run if the current builds status is "Aborted", "Failure" or "Unstable"

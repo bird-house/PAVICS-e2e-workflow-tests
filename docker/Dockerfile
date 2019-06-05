@@ -2,15 +2,15 @@ FROM conda/miniconda3
 
 RUN conda update conda
 
-COPY environment.yml /environment.yml
-
-# create env "birdy"
-RUN conda env create -f /environment.yml
-
 # to checkout other notebooks and to run pip install
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y git mercurial gcc && \
     apt-get clean
+
+COPY environment.yml /environment.yml
+
+# create env "birdy"
+RUN conda env create -f /environment.yml
 
 # needed for our specific jenkins
 RUN groupadd --gid 1000 jenkins \
@@ -31,6 +31,9 @@ RUN python -m ipykernel install --name birdy
 
 # build jupyterlab extensions installed by conda, see `jupyter labextension list`
 RUN jupyter lab build
+
+# for ipywidgets to work with jupyter lab (notebooks works out of the box)
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start.sh /usr/local/bin/
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start-singleuser.sh /usr/local/bin/
