@@ -26,5 +26,6 @@ dependencies:
   - nbdime
   # for pip packages
   - pip
-#  - pip:
-#    - xclim
+  - pip:
+    # visual debugger for Jupyter Notebook, not working with JupyterLab at this moment
+    - pixiedust
