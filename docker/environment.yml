@@ -12,6 +12,7 @@ dependencies:
   - netcdf4
   - pydap
   - cartopy
+  - xclim
   # tests
   - pytest
   - nbval
@@ -25,5 +26,5 @@ dependencies:
   - nbdime
   # for pip packages
   - pip
-  - pip:
-    - xclim
+#  - pip:
+#    - xclim
