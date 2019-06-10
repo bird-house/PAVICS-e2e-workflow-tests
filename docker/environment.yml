@@ -12,6 +12,7 @@ dependencies:
   - netcdf4
   - pydap
   - cartopy
+  - descartes
   - xclim
   # tests
   - pytest
