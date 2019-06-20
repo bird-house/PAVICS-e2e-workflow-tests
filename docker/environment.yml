@@ -25,6 +25,9 @@ dependencies:
   - jupyterhub
   # to diff .ipynb files
   - nbdime
+  # utilities
+  - curl
+  - wget
   # for pip packages
   - pip
   - pip:
