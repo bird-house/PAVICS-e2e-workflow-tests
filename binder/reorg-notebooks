@@ -1,7 +1,9 @@
 #!/bin/sh
 
-mv -v pavics-sdi-*/docs/source/notebooks/*.ipynb ./
-rm -rfv pavics-sdi-*
+. ./default_build_params
 
-mv -v finch-*/docs/source/notebooks/*.ipynb ./
-rm -rfv finch-*
+mv -v pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb ./
+rm -rfv pavics-sdi-$PAVICS_SDI_BRANCH
+
+mv -v finch-$FINCH_BRANCH/docs/source/notebooks/*.ipynb ./
+rm -rfv finch-$FINCH_BRANCH
