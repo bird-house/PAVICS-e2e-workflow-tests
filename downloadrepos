@@ -4,7 +4,7 @@ downloadrepos() {
     github_repo="$1"; shift
     branch="$1"; shift
 
-    curl --location --silent \
+    wget --quiet --output-document - \
         $github_repo/archive/${branch}.tar.gz | tar xz
 }
 
