@@ -2,6 +2,11 @@
 
 . ./default_build_params
 
+# if name clash, last command wins
+
+mv -v esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/examples ./esgf-compute-api
+rm -rfv esgf-compute-api-$ESGF_COMPUTE_API_BRANCH
+
 mv -v pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb ./
 rm -rfv pavics-sdi-$PAVICS_SDI_BRANCH
 

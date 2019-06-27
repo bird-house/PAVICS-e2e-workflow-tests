@@ -18,3 +18,10 @@ if [ -z "$RAVEN_BRANCH" ]; then
 else
     echo "RAVEN_BRANCH has been set to '$RAVEN_BRANCH'"
 fi
+
+if [ -z "$ESGF_COMPUTE_API_BRANCH" ]; then
+    ESGF_COMPUTE_API_BRANCH=devel
+    echo "ESGF_COMPUTE_API_BRANCH not set, default to '$ESGF_COMPUTE_API_BRANCH'"
+else
+    echo "ESGF_COMPUTE_API_BRANCH has been set to '$ESGF_COMPUTE_API_BRANCH'"
+fi
