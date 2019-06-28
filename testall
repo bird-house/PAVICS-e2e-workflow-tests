@@ -38,8 +38,8 @@ rm -v esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/tox.ini
 # last notebooks higher chance for name clash
 ./runtest "notebooks/*.ipynb \
     finch-$FINCH_BRANCH/docs/source/notebooks/*.ipynb \
-    pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb \
-    esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/examples/*.ipynb"
+    pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
+# esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/examples/*.ipynb"
 # raven-$RAVEN_BRANCH/docs/source/notebooks/*.ipynb
 EXIT_CODE="$?"
 
