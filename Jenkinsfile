@@ -17,8 +17,8 @@ pipeline {
                description: 'https://github.com/Ouranosinc/pavics-sdi branch to test against.', trim: true)
         string(name: 'FINCH_BRANCH', defaultValue: 'master',
                description: 'https://github.com/bird-house/finch branch to test against.', trim: true)
-//        string(name: 'RAVEN_BRANCH', defaultValue: 'master',
-//               description: 'https://github.com/Ouranosinc/raven branch to test against.', trim: true)
+        string(name: 'RAVEN_BRANCH', defaultValue: 'master',
+               description: 'https://github.com/Ouranosinc/raven branch to test against.', trim: true)
 //        string(name: 'ESGF_COMPUTE_API_BRANCH', defaultValue: 'devel',
 //               description: 'https://github.com/ESGF/esgf-compute-api branch to test against.', trim: true)
         booleanParam(name: 'VERIFY_SSL', defaultValue: true,
