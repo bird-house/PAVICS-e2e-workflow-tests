@@ -44,7 +44,7 @@ if [ x"$SAVE_RESULTING_NOTEBOOK" = xtrue ]; then
         fi
         jupyter nbconvert --to notebook --execute \
             --ExecutePreprocessor.timeout=60 --allow-errors \
-            --output-dir buildout --output ${filename}.output.ipynb $nb
+            --output-dir buildout --output "${filename}.output.ipynb" "$nb"
     done
 fi
 
