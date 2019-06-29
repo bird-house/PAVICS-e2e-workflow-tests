@@ -3,6 +3,7 @@ name: birdy
 channels:
   - birdhouse
   - conda-forge
+  - cdat
   - defaults
 dependencies:
   - matplotlib
@@ -14,6 +15,11 @@ dependencies:
   - cartopy
   - descartes
   - xclim
+  # for esgf notebooks
+  - esgf-compute-api
+  - cdms2
+  - vcs
+  - mesalib
   # tests
   - pytest
   - nbval

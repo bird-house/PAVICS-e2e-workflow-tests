@@ -8,7 +8,7 @@ downloadrepos() {
         $github_repo/archive/${branch}.tar.gz | tar xz
 }
 
-downloadouranosrepos() {
+downloadgithubrepos() {
     repo_owner="$1"; shift
     repo_name="$1"; shift
     repo_branch="$1"; shift
@@ -24,9 +24,10 @@ downloadouranosrepos() {
 . ./default_build_params
 
 if [ -z "$1" ]; then
-    downloadouranosrepos Ouranosinc pavics-sdi $PAVICS_SDI_BRANCH
-    downloadouranosrepos bird-house finch $FINCH_BRANCH
-    downloadouranosrepos Ouranosinc raven $RAVEN_BRANCH
+    downloadgithubrepos Ouranosinc pavics-sdi $PAVICS_SDI_BRANCH
+    downloadgithubrepos bird-house finch $FINCH_BRANCH
+    downloadgithubrepos Ouranosinc raven $RAVEN_BRANCH
+    downloadgithubrepos ESGF esgf-compute-api $ESGF_COMPUTE_API_BRANCH
 else
     set -x
     downloadrepos "$@"

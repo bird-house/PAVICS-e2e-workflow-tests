@@ -16,6 +16,7 @@ git clean -fdx
 PAVICS_SDI_BRANCH="`echo "$PAVICS_SDI_BRANCH" | sed "s@/@-@g"`"
 FINCH_BRANCH="`echo "$FINCH_BRANCH" | sed "s@/@-@g"`"
 RAVEN_BRANCH="`echo "$RAVEN_BRANCH" | sed "s@/@-@g"`"
+ESGF_COMPUTE_API_BRANCH="`echo "$ESGF_COMPUTE_API_BRANCH" | sed "s@/@-@g"`"
 
 # lowercase VERIFY_SSL string
 VERIFY_SSL="`echo "$VERIFY_SSL" | tr '[:upper:]' '[:lower:]'`"
@@ -28,12 +29,17 @@ if [ x"$VERIFY_SSL" = xfalse ]; then
     echo "setting env var DISABLE_VERIFY_SSL for notebooks"
 fi
 
-# presence of this file confuse py.test execution rootdir discovery
+# presence of setup.cfg, tox.ini files confuse py.test execution rootdir discovery
 rm -v finch-$FINCH_BRANCH/setup.cfg
+rm -v raven-$RAVEN_BRANCH/setup.cfg
+rm -v esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/setup.cfg
+rm -v esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/tox.ini
 
+# last notebooks higher chance for name clash
 ./runtest "notebooks/*.ipynb \
     finch-$FINCH_BRANCH/docs/source/notebooks/*.ipynb \
     pavics-sdi-$PAVICS_SDI_BRANCH/docs/source/notebooks/*.ipynb"
+# esgf-compute-api-$ESGF_COMPUTE_API_BRANCH/examples/*.ipynb"
 # raven-$RAVEN_BRANCH/docs/source/notebooks/*.ipynb
 EXIT_CODE="$?"
 

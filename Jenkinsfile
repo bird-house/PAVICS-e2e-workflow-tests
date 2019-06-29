@@ -5,7 +5,7 @@ pipeline {
     // https://jenkins.io/doc/book/pipeline/syntax/
     agent {
         docker {
-            image "pavics/workflow-tests:190620"
+            image "pavics/workflow-tests:190628"
             label 'linux && docker'
         }
     }
@@ -19,6 +19,8 @@ pipeline {
                description: 'https://github.com/bird-house/finch branch to test against.', trim: true)
 //        string(name: 'RAVEN_BRANCH', defaultValue: 'master',
 //               description: 'https://github.com/Ouranosinc/raven branch to test against.', trim: true)
+//        string(name: 'ESGF_COMPUTE_API_BRANCH', defaultValue: 'devel',
+//               description: 'https://github.com/ESGF/esgf-compute-api branch to test against.', trim: true)
         booleanParam(name: 'VERIFY_SSL', defaultValue: true,
                      description: 'Check the box to verify SSL certificate for https connections to PAVICS host.')
         booleanParam(name: 'SAVE_RESULTING_NOTEBOOK', defaultValue: true,
@@ -52,7 +54,7 @@ Note this is another run, will double the time and no guaranty to have same erro
 
     post {
         always {
-            archiveArtifacts(artifacts: 'notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb, finch-*/docs/source/notebooks/*.ipynb, buildout/*.output.ipynb, buildout/env-dump/',
+            archiveArtifacts(artifacts: 'notebooks/*.ipynb, pavics-sdi-*/docs/source/notebooks/*.ipynb, finch-*/docs/source/notebooks/*.ipynb, raven-*/docs/source/notebooks/*.ipynb, esgf-compute-api-*/examples/*.ipynb, buildout/*.output.ipynb, buildout/env-dump/',
                              fingerprint: true)
         }
 	unsuccessful {  // Run if the current builds status is "Aborted", "Failure" or "Unstable"
