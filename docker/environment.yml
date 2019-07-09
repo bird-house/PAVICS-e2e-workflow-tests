@@ -14,7 +14,10 @@ dependencies:
   - pydap
   - cartopy
   - descartes
-  - xclim
+  - rasterio
+  # can re-enable xclim from conda once we have write access to
+  # https://github.com/conda-forge/xclim-feedstock
+  # - xclim
   # for esgf notebooks
   - esgf-compute-api
   - cdms2
@@ -31,11 +34,14 @@ dependencies:
   - jupyterhub
   # to diff .ipynb files
   - nbdime
+  # Voila turns Jupyter notebooks into standalone web applications
+  - voila
   # utilities
   - curl
   - wget
   # for pip packages
   - pip
   - pip:
+    - xclim
     # visual debugger for Jupyter Notebook, not working with JupyterLab at this moment
     - pixiedust

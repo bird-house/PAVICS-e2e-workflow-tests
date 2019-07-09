@@ -33,7 +33,8 @@ RUN python -m ipykernel install --name birdy
 RUN jupyter lab build
 
 # for ipywidgets to work with jupyter lab (notebooks works out of the box)
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
+    && jupyter serverextension enable voila --sys-prefix
 
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start.sh /usr/local/bin/
 ADD https://raw.githubusercontent.com/jupyter/docker-stacks/master/base-notebook/start-singleuser.sh /usr/local/bin/
