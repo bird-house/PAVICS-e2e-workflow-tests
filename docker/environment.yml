@@ -9,7 +9,7 @@ dependencies:
   - matplotlib
   - xarray
   - numpy
-  - birdhouse-birdy>=0.6.5
+  - birdhouse-birdy
   - netcdf4
   - pydap
   - cartopy
