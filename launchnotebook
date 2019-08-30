@@ -7,7 +7,7 @@ if [ -z "$PORT" ]; then
 fi
 
 if [ -z "$DOCKER_IMAGE" ]; then
-    DOCKER_IMAGE="pavics/workflow-tests:190830"
+    DOCKER_IMAGE="pavics/workflow-tests:190830.1"
 fi
 
 UID="`id -u`"
