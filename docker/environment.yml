@@ -1,7 +1,6 @@
 # conda env create -f environment.yml
 name: birdy
 channels:
-  - birdhouse
   - conda-forge
   - cdat
   - defaults
@@ -9,14 +8,13 @@ dependencies:
   - matplotlib
   - xarray
   - numpy
-  - birdhouse-birdy
+  - birdy
   - netcdf4
   - pydap
   - cartopy
   - descartes
   - rasterio
   - gdal  # for osgeo
-  - tiledb=1.6.0  # pinned version for gdal-3.0.1, remove for future gdal
   # can re-enable xclim from conda once we have write access to
   # https://github.com/conda-forge/xclim-feedstock
   # - xclim
