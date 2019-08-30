@@ -27,7 +27,7 @@ RUN python -m ipykernel install --name birdy
 # anything accidentally
 # this is for debug only, all dependencies should be specified in
 # environment.yml above
-# RUN conda install -n birdy -c birdhouse -c conda-forge -c cdat -c defaults nbdime
+# RUN conda install -n birdy -c conda-forge -c cdat -c defaults nbdime
 
 # build jupyterlab extensions installed by conda, see `jupyter labextension list`
 RUN jupyter lab build
