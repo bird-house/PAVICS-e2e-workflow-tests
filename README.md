@@ -77,8 +77,8 @@ By using the exact same Docker container as the one that Jenkins will use, you
 will be guarantied that if a notebook runs locally, it will also run
 successfully on Jenkins.
 
-Therefore we do not need to pin any versions in the conda environment.yml file
-since the built docker image provided us with pinned version for
+Therefore we do not need to pin any versions in the conda `environment.yml`
+file since the built docker image provided us with pinned version for
 reproducibility.
 
 To encourage more notebooks written/contribution, which means more
@@ -133,23 +133,12 @@ docker stop birdy-notebook  # the container created by launchnotebook
 
 ## Releasing a new Docker image
 
-All the steps below can be automated by using the script `releasedocker
-<old_ver> <new_ver>`, example: `releasedocker 190311 190312`.
+Use the script `releasedocker <old_ver> <new_ver>`, example: `releasedocker
+190311 190312`.
 
-Update `Jenkinsfile`, `launchcontainer`, `launchnotebook` with the soon to
-build `pavics/workflow-tests` image tag.
+This script will commit, tag and push a new release.  You need write access to
+the repo when using this script.
 
-Tag with `docker-YYMMDD` and push and the Docker image tag will be the `YYMMDD` part.
-
-Example:
-```
-$EDITOR Jenkinsfile launchcontainer launchnotebook
-# update to pavics/workflow-tests:190311
-git ci -am "update to use image pavics/workflow-tests:190311"
-git tag docker-190311
-git push
-git push --tags
-```
-
-Then Docker Hub will build automatically and eventually we have a new image
-[`pavics/workflow-tests:190311`](https://hub.docker.com/r/pavics/workflow-tests).
+Then Docker Hub will build automatically the new tag and eventually we have a
+new image, example:
+[`pavics/workflow-tests:190312`](https://hub.docker.com/r/pavics/workflow-tests/tags).
