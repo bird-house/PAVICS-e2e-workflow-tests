@@ -77,9 +77,9 @@ By using the exact same Docker container as the one that Jenkins will use, you
 will be guarantied that if a notebook runs locally, it will also run
 successfully on Jenkins.
 
-Therefore we do not need to pin any versions in the conda `environment.yml`
-file since the built docker image provided us with pinned version for
-reproducibility.
+Therefore we do not need to pin any versions in the conda
+[`environment.yml`](docker/environment.yml) file since the built docker image
+provided us with pinned version for reproducibility.
 
 To encourage more notebooks written/contribution, which means more
 documentations and more tests, it is easy to add new notebooks and the test
@@ -133,8 +133,8 @@ docker stop birdy-notebook  # the container created by launchnotebook
 
 ## Releasing a new Docker image
 
-Use the script `releasedocker <old_ver> <new_ver>`, example: `releasedocker
-190311 190312`.
+Use the script [`releasedocker`](releasedocker)` <old_ver> <new_ver>`, example:
+`releasedocker 190311 190312`.
 
 This script will commit, tag and push a new release.  You need write access to
 the repo when using this script.
